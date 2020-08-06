@@ -67,7 +67,7 @@
 </template>
 <script>
 import axios from 'axios'
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'https://fast-earth-55587.herokuapp.com'
 export default {
   name: 'Register',
   data () {
