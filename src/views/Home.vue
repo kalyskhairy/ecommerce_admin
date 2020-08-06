@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+ <v-container>
+   <v-main app>
+     <Content :Products="Products" :Categories="Categories" />
+   </v-main>
+ </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Content from '@/components/content.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Content
+  },
+  computed: {
+    Products () {
+      return this.$store.state.Products
+    },
+    Categories () {
+      return this.$store.state.Categories
+    }
+  },
+  created () {
+    if (localStorage.getItem('token')) {
+      this.$store.dispatch('fetchProduct')
+      this.$store.dispatch('fetchCategory')
+      this.$store.commit('set_isLogin', true)
+    }
   }
 }
 </script>
